@@ -44,24 +44,61 @@
 	gap: 12px;
 	margin: 32px 0;
 	padding: 0 24px;
+}
 
-	.picture {
-		position: relative;
-		width: 100%;
-		border-radius: 6px;
-		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-		transition: all 0.1s;
-		overflow: hidden;
-		cursor: pointer;
+.picture {
+	position: relative;
+	width: 100%;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	transition: all 0.1s;
+	overflow: hidden;
 
+	&:hover {
+		filter: brightness(0.8);
+	}
+
+	&:hover .picture-controllers {
+		transform: translateY(-50%);
+		opacity: 1;
+	}
+
+	img {
+		aspect-ratio: 1;
+		object-fit: cover;
+		object-position: center;
+	}
+}
+
+.picture-controllers {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	transform: translateY(50%);
+	width: 100%;
+	transition: all 0.2s;
+	opacity: 0;
+}
+
+.picture-controller {
+	width: 36px;
+	height: 36px;
+	margin: 0 4px;
+	font-size: 1.8rem;
+	background-color: white;
+	border-radius: 50%;
+
+	&.view {
 		&:hover {
-			filter: brightness(0.8);
+			background-color: $viewColor;
 		}
+	}
 
-		img {
-			aspect-ratio: 1;
-			object-fit: cover;
-			object-position: center;
+	&.trash {
+		&:hover {
+			background-color: $trashColor;
 		}
 	}
 }
