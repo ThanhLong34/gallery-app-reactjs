@@ -3,12 +3,65 @@
 
 .App {
 	background-color: $backgroundColor;
-	padding: 2rem;
-	height: 100vh;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	font-size: 4.2rem;
+	color: $primaryColor;
 	text-align: center;
 }
 
-a.active {
-	color: $tertiaryColor;
-	background-color: $backgroundColor;
+.btn {
+	padding: 12px 18px;
+	border-radius: 6px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	transition: all 0.2s;
+
+	&:hover {
+		transform: translateY(-1px);
+	}
+
+	&.btn-primary {
+		color: white;
+		background-color: $primaryColor;
+	}
+
+	&.btn-secondary {
+		color: white;
+		background-color: $secondaryColor;
+	}
+}
+
+.gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 12px;
+	margin: 32px 0;
+	padding: 0 24px;
+
+	.picture {
+		position: relative;
+		width: 100%;
+		border-radius: 6px;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+		transition: all 0.1s;
+		overflow: hidden;
+		cursor: pointer;
+
+		&:hover {
+			filter: brightness(0.8);
+		}
+
+		img {
+			aspect-ratio: 1;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
 }
