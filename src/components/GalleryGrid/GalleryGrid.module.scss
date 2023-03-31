@@ -1,0 +1,55 @@
+@use "@/assets/styles/variables.scss" as *;
+
+.gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 12px;
+	margin: 32px 0;
+	padding: 0 24px;
+}
+
+.picture {
+	position: relative;
+	width: 100%;
+	border-radius: 6px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	transition: all 0.1s;
+	overflow: hidden;
+
+	&:hover .controllers {
+		transform: translateY(-50%);
+		opacity: 1;
+	}
+
+	img {
+		aspect-ratio: 1;
+		object-fit: cover;
+		object-position: center;
+	}
+}
+
+.controllers {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	transform: translateY(50%);
+	width: 100%;
+	transition: all 0.2s;
+	opacity: 0;
+}
+
+.controller {
+	&.view {
+		&:hover {
+			background-color: $viewColor;
+		}
+	}
+
+	&.trash {
+		&:hover {
+			background-color: $trashColor;
+		}
+	}
+}

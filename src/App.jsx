@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import GalleryGrid from "./components/GalleryGrid";
+import ViewPictureDialog from "./components/ViewPictureDialog";
 
 function App() {
 	// States
@@ -32,38 +34,34 @@ function App() {
 			url: "https://images.unsplash.com/photo-1456115767017-8ad77860f241?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
 		},
 	]);
+	const [viewPictureUrl, setViewPictureUrl] = useState("");
 
 	// Handles
 	function handleUploadPicture() {}
-	function handleViewPicture(url) {}
-	function handleDeletePicture(id) {}
+	function handleCloseViewDialog() {
+		setViewPictureUrl(null);
+	}
+	const handleViewPicture = useCallback((url) => {
+		setViewPictureUrl(url);
+	}, []);
+	const handleDeletePicture = useCallback((id) => {
+		console.log(id);
+	}, []);
 
 	return (
 		<div className="App">
 			<h1 className="title">GALLERY APP</h1>
 			<div className="flex-center">
-				<button className="btn btn-secondary" onClick={handleUploadPicture}>Upload picture</button>
+				<button className="btn btn-secondary" onClick={handleUploadPicture}>
+					Upload picture
+				</button>
 			</div>
-			<div className="gallery-grid">
-				{pictures &&
-					pictures.map((p) => (
-						<div className="picture" key={p.id}>
-							<img
-								src={p.url}
-								alt="gallery item"
-							/>
 
-							<div className="picture-controllers">
-								<button className="picture-controller view" onClick={() => handleViewPicture(p.url)}>
-									<i className="fa-solid fa-eye"></i>
-								</button>
-								<button className="picture-controller trash" onClick={() => handleDeletePicture(p.id)}>
-									<i className="fa-solid fa-trash-can"></i>
-								</button>
-							</div>
-						</div>
-					))}
-			</div>
+			{/* Gallery grid */}
+			<GalleryGrid pictures={pictures} onViewPicture={handleViewPicture} onDeletePicture={handleDeletePicture} />
+
+			{/* View picture dialog */}
+			<ViewPictureDialog url={viewPictureUrl} onClose={handleCloseViewDialog} />
 		</div>
 	);
 }
