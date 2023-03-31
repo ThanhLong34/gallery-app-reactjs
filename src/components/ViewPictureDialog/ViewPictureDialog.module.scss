@@ -3,7 +3,8 @@
 @keyframes showDialog {
 	from {
 		opacity: 0;
-	} to {
+	}
+	to {
 		opacity: 1;
 	}
 }
@@ -21,8 +22,8 @@
 .dialog {
 	position: relative;
 	width: 100%;
-	max-width: 500px;
-	padding: 10px 14px 14px;
+	max-width: 65vw;
+	padding: 10px 14px 28px;
 	background-color: white;
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 	border-radius: 10px;
@@ -44,6 +45,7 @@
 	width: 100%;
 
 	img {
+		max-height: 500px;
 		object-fit: contain;
 	}
 }

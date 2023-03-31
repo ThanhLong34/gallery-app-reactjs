@@ -8,24 +8,24 @@ import ButtonIcon from "@/components/ButtonIcon";
 const cx = classNames.bind(styles);
 
 GalleryGrid.propTypes = {
-	pictures: PropTypes.array,
+	pictureList: PropTypes.array,
 	onViewPicture: PropTypes.func,
 	onDeletePicture: PropTypes.func,
 };
 
-function GalleryGrid({ pictures, onViewPicture, onDeletePicture }) {
+function GalleryGrid({ pictureList, onViewPicture, onDeletePicture }) {
 	return (
 		<div className={cx("gallery-grid")}>
-			{pictures &&
-				pictures.map((p) => (
+			{pictureList &&
+				pictureList.map((p) => (
 					<div className={cx("picture")} key={p.id}>
-						<img className={cx("picture-img")} src={p.url} alt="gallery item" />
+						<img className={cx("picture-img")} src={p.link} alt="gallery item" />
 
 						<div className={cx("controllers")}>
 							<ButtonIcon
 								className={cx("controller", "view")}
 								icon="fa-solid fa-eye"
-								onClick={() => onViewPicture(p.url)}
+								onClick={() => onViewPicture(p.link)}
 							/>
 							<ButtonIcon
 								className={cx("controller", "trash")}
@@ -34,7 +34,8 @@ function GalleryGrid({ pictures, onViewPicture, onDeletePicture }) {
 							/>
 						</div>
 					</div>
-				))}
+				)) }
+			{(pictureList.length <= 0) && <p>Empty</p>}
 		</div>
 	);
 }
