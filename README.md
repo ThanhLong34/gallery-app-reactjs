@@ -10,7 +10,7 @@
 - Delete image uploaded
 
 ## 🛸 Techs
-- Front-end: ReactJS
+- Frontend: ReactJS
 - Backend: PHP (Allow call APIs)
 - DBMS: MySQL (XAMPP)
 
