@@ -15,7 +15,6 @@ function ViewPictureDialog({ url, onClose }) {
 
 	useEffect(() => {
 		url && setIsShow(true);
-		console.log("effect");
 	}, [url]);
 
 	const handleClose = useCallback(() => {

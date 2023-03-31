@@ -10,8 +10,6 @@ ButtonIcon.propTypes = {
 	onClick: PropTypes.func,
 };
 
-ButtonIcon.defaultProps = {};
-
 function ButtonIcon({ className, icon, onClick }) {
 	return (
 		<button className={cx("button-icon", className)} onClick={onClick}>

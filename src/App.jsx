@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import Button from "./components/Button";
 import GalleryGrid from "./components/GalleryGrid";
 import ViewPictureDialog from "./components/ViewPictureDialog";
 
@@ -37,10 +38,12 @@ function App() {
 	const [viewPictureUrl, setViewPictureUrl] = useState("");
 
 	// Handles
-	function handleUploadPicture() {}
 	function handleCloseViewDialog() {
 		setViewPictureUrl(null);
 	}
+	const handleUploadPicture = useCallback(() => {
+		console.log('upload');
+	}, []);
 	const handleViewPicture = useCallback((url) => {
 		setViewPictureUrl(url);
 	}, []);
@@ -52,9 +55,9 @@ function App() {
 		<div className="App">
 			<h1 className="title">GALLERY APP</h1>
 			<div className="flex-center">
-				<button className="btn btn-secondary" onClick={handleUploadPicture}>
+				<Button prefixIcon="fa-solid fa-cloud-arrow-up" onClick={handleUploadPicture}>
 					Upload picture
-				</button>
+				</Button>
 			</div>
 
 			{/* Gallery grid */}
