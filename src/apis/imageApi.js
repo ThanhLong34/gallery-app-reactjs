@@ -38,3 +38,16 @@ export async function getImageList(params) {
 
 	return data;
 }
+
+export async function deleteImage(id) {
+	// Call api
+	const response = await fetch(`${BASE_API}/image/delete.php`, {
+		method: "DELETE",
+		body: JSON.stringify({ id })
+	});
+
+	// Get data
+	const data = await response.json();
+
+	return data;
+}

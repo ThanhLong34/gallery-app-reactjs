@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import { uploadImage, getImageList } from "./apis/imageApi";
+import { uploadImage, getImageList, deleteImage } from "./apis/imageApi";
 import Button from "./components/Button";
 import GalleryGrid from "./components/GalleryGrid";
 import ViewPictureDialog from "./components/ViewPictureDialog";
@@ -7,7 +7,6 @@ import ViewPictureDialog from "./components/ViewPictureDialog";
 function App() {
 	// States
 	const [pictureList, setPictureList] = useState([]);
-	const [choicePicture, setChoicePicture] = useState(null);
 	const [viewPictureUrl, setViewPictureUrl] = useState("");
 
 	// Refs
@@ -15,6 +14,10 @@ function App() {
 
 	// Effects
 	useEffect(() => {
+		loadImageList();
+	}, []);
+
+	const loadImageList = () => {
 		getImageList().then((res) => {
 			const newList = res.data.map((p) => ({
 				...p,
@@ -23,7 +26,7 @@ function App() {
 			}));
 			setPictureList(newList);
 		});
-	}, [choicePicture]);
+	};
 
 	const handleCloseViewDialog = () => {
 		setViewPictureUrl(null);
@@ -36,9 +39,7 @@ function App() {
 	const handleUploadPicture = useCallback((e) => {
 		const imageFile = e.target.files[0];
 		if (imageFile) {
-			uploadImage(imageFile).then((res) => {
-				setChoicePicture(imageFile);
-			});
+			uploadImage(imageFile).then((res) => loadImageList());
 		}
 	}, []);
 
@@ -47,7 +48,7 @@ function App() {
 	}, []);
 
 	const handleDeletePicture = useCallback((id) => {
-		console.log(id);
+		deleteImage(id).then((res) => loadImageList());
 	}, []);
 
 	return (

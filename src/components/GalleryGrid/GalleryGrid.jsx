@@ -15,28 +15,35 @@ GalleryGrid.propTypes = {
 
 function GalleryGrid({ pictureList, onViewPicture, onDeletePicture }) {
 	return (
-		<div className={cx("gallery-grid")}>
-			{pictureList &&
-				pictureList.map((p) => (
-					<div className={cx("picture")} key={p.id}>
-						<img className={cx("picture-img")} src={p.link} alt="gallery item" />
+		<>
+			<div className={cx("gallery-grid")}>
+				{pictureList &&
+					pictureList.map((p) => (
+						<div className={cx("picture")} key={p.id}>
+							<img className={cx("picture-img")} src={p.link} alt="gallery item" />
 
-						<div className={cx("controllers")}>
-							<ButtonIcon
-								className={cx("controller", "view")}
-								icon="fa-solid fa-eye"
-								onClick={() => onViewPicture(p.link)}
-							/>
-							<ButtonIcon
-								className={cx("controller", "trash")}
-								icon="fa-solid fa-trash-can"
-								onClick={() => onDeletePicture(p.id)}
-							/>
+							<div className={cx("controllers")}>
+								<ButtonIcon
+									className={cx("controller", "view")}
+									icon="fa-solid fa-eye"
+									onClick={() => onViewPicture(p.link)}
+								/>
+								<ButtonIcon
+									className={cx("controller", "trash")}
+									icon="fa-solid fa-trash-can"
+									onClick={() => onDeletePicture(p.id)}
+								/>
+							</div>
 						</div>
-					</div>
-				)) }
-			{(pictureList.length <= 0) && <p>Empty</p>}
-		</div>
+					))}
+			</div>
+			{pictureList.length <= 0 && (
+				<div className={cx("empty-text")}>
+					<p>Empty!</p>
+					<p>Please upload pictures</p>
+				</div>
+			)}
+		</>
 	);
 }
 
